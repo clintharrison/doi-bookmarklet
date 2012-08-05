@@ -134,7 +134,7 @@ header ul:before {
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
+  -webkit-box-shadow: rgb5a(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
   -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
   box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0, inset rgba(255, 255, 255, 0.7) 0 -1px 0;
 }
@@ -271,6 +271,33 @@ dt {
 
 th {
   color: #222;
+}
+
+input#proxy-url-input {
+  font-size: 14px;
+  line-height: 1.5em;
+  margin-left: 4px;
+  width: 250px;
+}
+
+a#doi-bookmarklet {
+  background: #5198DF; /* rgb(81, 152, 223) */
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #77b9fb), color-stop(100%, #3782cd));
+  background: -webkit-linear-gradient(#77b9fb, #3782cd);
+  background: -moz-linear-gradient(#77b9fb, #3782cd);
+  background: -o-linear-gradient(#77b9fb, #3782cd);
+  background: -ms-linear-gradient(#77b9fb, #3782cd);
+  background: linear-gradient(#77b9fb, #3782cd);
+  border-radius: 5px;
+  -webkit-box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
+  -moz-box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
+  box-shadow: inset rgba(255, 255, 255, 0.45) 0 1px 0, inset rgba(0, 0, 0, 0.2) 0 -1px 0;
+  color: #f6faff;
+  margin-left: 4px;
+  padding: 5px 8px;
+  text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 0;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
 }
 
 small {

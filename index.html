@@ -21,27 +21,34 @@
         <p></p>
         <p class="view"><a href="https://github.com/Clinteger/doi-bookmarklet">View the Project on GitHub <small>Clinteger/doi-bookmarklet</small></a></p>
         <ul>
-          <li><a href="https://github.com/Clinteger/doi-bookmarklet/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/Clinteger/doi-bookmarklet/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/Clinteger/doi-bookmarklet">View On <strong>GitHub</strong></a></li>
+          <li class="single"><a href="https://github.com/Clinteger/doi-bookmarklet">View On <strong>GitHub</strong></a></li>
         </ul>
       </header>
       <section>
         <h2>About</h2>
 
-<p>The DOI Bookmarklet provides access to access-restricted documents by redirecting through a ProQuest EZproxy as used by many university libraries.</p>
+<p>The DOI Bookmarklet opens access-restricted documents (like scientific journals) by redirecting through a ProQuest EZproxy as used by many university libraries.</p>
 
 <h2>Installation</h2>
 
-<p>Enter your ProQuest EZproxy URL:
-</p>
+<p>Enter your ProQuest EZproxy URL:<input type="url" id="proxy-url-input" placeholder="http://proxy.lib.umich.edu"></input></p>
 
-<p>Bookmark the following link:
-<a href="">DOI Bookmarklet</a></p>
+<p>Bookmark the following link: <a href="" id="doi-bookmarklet">DOI Bookmarklet</a></p>
 
-<p>The bookmarklet consists of the following generated and minified JavaScript:</p>
-
-<div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span><span class="o">?</span><span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span><span class="o">:</span><span class="nb">document</span><span class="p">.</span><span class="nx">selection</span><span class="p">.</span><span class="nx">createRange</span><span class="p">().</span><span class="nx">text</span><span class="p">,</span><span class="nx">a</span><span class="o">=</span><span class="sr">/\w?(?:doi:|hdl:(?:\/\/)?)\s*([0-9./a-z]+)\w?/i</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span><span class="k">if</span><span class="p">(</span><span class="kc">null</span><span class="o">!=</span><span class="nx">a</span><span class="p">){</span><span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="nx">b</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">"a"</span><span class="p">);</span><span class="nx">b</span><span class="p">.</span><span class="nx">href</span><span class="o">=</span><span class="s2">""</span><span class="p">;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">protocol</span><span class="o">+</span><span class="s2">"//dx.doi.org."</span><span class="o">+</span><span class="nx">b</span><span class="p">.</span><span class="nx">host</span><span class="o">+</span><span class="s2">"/"</span><span class="o">+</span><span class="nx">a</span><span class="p">)}})();</span>
+<p>The bookmarklet consists of the following JavaScript minified:</p>
+ 
+<div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">proxyUrl</span> <span class="o">=</span> <span class="s2">&quot;<span id="proxy-url-preview">http://proxy.lib.umich.edu</span>&quot;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">selection</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span> <span class="o">?</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getSelection</span><span class="p">().</span><span class="nx">toString</span><span class="p">()</span> <span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">selection</span><span class="p">.</span><span class="nx">createRange</span><span class="p">().</span><span class="nx">text</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">regex</span> <span class="o">=</span> <span class="sr">/\w?(?:doi:|hdl:(?:\/\/)?)\s*([0-9./a-z]+)\w?/i</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">regex</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="nx">selection</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">match</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">doi</span> <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">tempAnchor</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'a'</span><span class="p">);</span>
+        <span class="nx">tempAnchor</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">proxyUrl</span><span class="p">;</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="nx">tempAnchor</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">+</span> <span class="s1">'//dx.doi.org.'</span> <span class="o">+</span> <span class="nx">tempAnchor</span><span class="p">.</span><span class="nx">host</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="nx">doi</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">})();</span>
 </pre></div>
 
 <h2>How it works</h2>
@@ -60,6 +67,26 @@
       <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
     </footer>
     <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
-    
+    <script>
+(function() {
+    var buildAnchorHref = function(elAnchor, strProxyUrl) {
+	elAnchor.href = 'javascript:(function(){var a=document.getSelection?document.getSelection().toString():document.selection.createRange().text,a=/\\w?(?:doi:|hdl:(?:\\/\\/)?)\\s*([0-9./a-z]+)\\w?/i.exec(a);if(null!=a){var a=a[1],b=document.createElement("a");b.href="' + strProxyUrl + '";document.location=b.protocol+"//dx.doi.org."+b.host+"/"+a}})();';
+    }
+    var inputProxyUrl = document.getElementById("proxy-url-input");
+    var spanProxyUrlPreview = document.getElementById("proxy-url-preview");
+    var anchorBookmarklet = document.getElementById("doi-bookmarklet");
+    var updateLinkAndPreview = function() {
+	// trim whitespace from input value
+	var proxyUrl = inputProxyUrl.value.replace(/^\s*([\S\s]*)\b\s*$/, '$1');
+	if (proxyUrl.match(/https?:\/\/.*/i) == null) {
+	    proxyUrl = "http://" + proxyUrl;
+	}
+	buildAnchorHref(anchorBookmarklet, proxyUrl);
+	console.log(spanProxyUrlPreview);
+	spanProxyUrlPreview.innerText = proxyUrl;
+    }
+    inputProxyUrl.onkeyup = inputProxyUrl.onblur = updateLinkAndPreview;
+})();
+    </script>
   </body>
 </html>
